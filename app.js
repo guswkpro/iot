@@ -3,32 +3,14 @@ var http = require('http');
 var https = require('https');
 var app = express();
 var fs = require('fs');
-var request = require('request');
-
-var options = {  
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem')
-};
-
-var server = app.listen(3516, function () {
-        console.log("Express server has started on port 3516")
+var server = app.listen(3000, function () {
+        console.log("Express server has started on port 3000")
 });
 
-https.createServer(options, app).listen(443, function(){
-	console.log("https server listening on port 443");
-});
 var bodyParser = require('body-parser');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 app.use(logger('dev'));
-app.use(session({
-        secret: '##@%SWJHWJ#%&&!',
-        resave: false,
-        saveUninitialized: true
-}));
-app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
