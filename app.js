@@ -53,7 +53,7 @@ app.get('/', function (req, res) {
 						RESULT: 2
 					});
 				}
-			}
+			});
 		}
 	});
 });
