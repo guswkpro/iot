@@ -45,9 +45,16 @@ app.get('/', function (req, res) {
 	});
 });
 app.post('/', function (req, res) {
-	res.json({
-		RESULT: "1"
-	});
+	if(req.body.result.parameters.Drink_Type == "콜라"){
+		res.json({
+			RESULT: "1"
+		});
+	} else {
+		res.json({
+			RESULT: "2"
+		});
+	}
+	
 	// if (req.body.value == "콜라") {
 	// 	res.json({
 	// 		speech: "시원한 콜라 한캔 받으세요.",
