@@ -52,6 +52,10 @@ app.get('/', function (req, res) {
 					res.json({
 						RESULT: 2
 					});
+				} else if (drink_type == "0") {
+					res.json({
+						RESULT: 0
+					});
 				}
 			});
 		}
