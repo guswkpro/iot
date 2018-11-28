@@ -45,19 +45,22 @@ app.get('/', function (req, res) {
 	});
 });
 app.post('/', function (req, res) {
-	if (req.body.value == "콜라") {
-		res.json({
-			speech: "시원한 콜라 한캔 받으세요.",
-			displayText: "시원한 콜라 한캔 받으세요.",
-			RESULT: "1"
-		});
-	} else if (req.body.value == "사이다") {
-		res.json({
-			speech: "시원한 사이다 한캔 받으세요.",
-			displayText: "시원한 사이다 한캔 받으세요.",
-			RESULT: "2"
-		})
-	}
+	res.json({
+		RESULT: "1"
+	});
+	// if (req.body.value == "콜라") {
+	// 	res.json({
+	// 		speech: "시원한 콜라 한캔 받으세요.",
+	// 		displayText: "시원한 콜라 한캔 받으세요.",
+	// 		RESULT: "1"
+	// 	});
+	// } else if (req.body.value == "사이다") {
+	// 	res.json({
+	// 		speech: "시원한 사이다 한캔 받으세요.",
+	// 		displayText: "시원한 사이다 한캔 받으세요.",
+	// 		RESULT: "2"
+	// 	})
+	// }
 });
 
 app.get('/getdata', function (req, res) {
