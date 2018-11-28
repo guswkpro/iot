@@ -45,11 +45,18 @@ app.get('/', function(req, res){
 	});
 });
 app.post('/', function(req, res){
-	console.log('aaa');
-	console.log(req.header);
-	console.log(req.body);
-	res.json({
-		RESULT : "1"
+	client.query('UPDATE okgoogle.okgoogle_datas set data_number = ? where data_idx = ?', [Number(req.param("type")), Number(1)], function(error, result){
+		if(error){
+			console.log(error);
+			res.json({
+				RESULT : "0",
+				ERROR : error
+			});
+		} else {
+			res.json({
+				RESULT : "1"
+			});
+		}
 	});
 });
 
