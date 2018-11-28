@@ -3,7 +3,9 @@ var http = require('http');
 var https = require('https');
 var app = express();
 var fs = require('fs');
-var server = app.listen(3000, function () {
+var port = process.env.PORT || 3000; //*
+
+var server = app.listen(port, function () {
         console.log("Express server has started on port 3000")
 });
 
