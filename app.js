@@ -38,7 +38,7 @@ app.get('/', function (req, res) {
 				ERROR: error
 			});
 		} else {
-			var drink_type = result.data_number;
+			var drink_type = result[0].data_number;
 			client.query('UPDATE okgoogle.okgoogle_datas set data_number = ? where data_idx = 1', [Number(0)], function (error) {
 				if (error) {
 					res.json({
