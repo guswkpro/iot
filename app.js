@@ -34,7 +34,8 @@ app.get('/', function(req, res){
 		if(error){
 			console.log(error);
 			res.json({
-				RESULT : "0"
+				RESULT : "0",
+				ERROR : error
 			});
 		} else {
 			res.json({
@@ -57,7 +58,8 @@ app.get('/test', function(req, res){
 		if(error){
 			console.log(error);
 			res.json({
-				RESULT : "0"
+				RESULT : "0",
+				ERROR : error
 			});
 		} else {
 			res.json({
