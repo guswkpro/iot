@@ -30,7 +30,7 @@ var client = mysql.createConnection({
         GET
 ********************/
 app.get('/', function (req, res) {
-	client.query('UPDATE okgoogle.okgoogle_datas set data_number = ? where data_idx = ?', [Number(req.param("type")), Number(1)], function (error, result) {
+	client.query('SELECT * from okgoogle.okgoogle_datas', [], function (error, result) {
 		if (error) {
 			console.log(error);
 			res.json({
@@ -38,24 +38,57 @@ app.get('/', function (req, res) {
 				ERROR: error
 			});
 		} else {
-			res.json({
-				RESULT: "1"
-			});
+			var drink_type = result.data_number;
+			client.query('UPDATE okgoogle.okgoogle_datas set data_number = ? where data_idx = 1', [Number(0)], function (error) {
+				if (error) {
+					res.json({
+						RESULT: 0
+					});
+				} else if (drink_type == "1") {
+					res.json({
+						RESULT: 1
+					});
+				} else if (drink_type == "2") {
+					res.json({
+						RESULT: 2
+					});
+				}
+			}
 		}
 	});
 });
 app.post('/', function (req, res) {
-	if(req.body.result.parameters.Drink_Type == "콜라"){
-		res.json({
-			speech: "시원한 콜라 한캔 받으세요.",
-			displayText: "시원한 콜라 한캔 받으세요.",
-			RESULT: "1"
+	if (req.body.result.parameters.Drink_Type == "콜라") {
+		client.query('UPDATE okgoogle.okgoogle_datas set data_number = ? where data_idx = 1', [Number(1)], function (error) {
+			if (error) {
+				res.json({
+					speech: "에러가 발생했습니다. 다시 말씀해주세요.",
+					displayText: "에러가 발생했습니다. 다시 말씀해주세요.",
+					RESULT: "0"
+				});
+			} else {
+				res.json({
+					speech: "시원한 콜라 한캔 받으세요.",
+					displayText: "시원한 콜라 한캔 받으세요.",
+					RESULT: "1"
+				});
+			}
 		});
-	} else {
-		res.json({
-			speech: "시원한 사이다 한캔 받으세요.",
-			displayText: "시원한 사이다 한캔 받으세요.",
-			RESULT: "2"
+	} else if (req.body.result.parameters.Drink_Type == "사이다") {
+		client.query('UPDATE okgoogle.okgoogle_datas set data_number = ? where data_idx = 1', [Number(2)], function (error) {
+			if (error) {
+				res.json({
+					speech: "에러가 발생했습니다. 다시 말씀해주세요.",
+					displayText: "에러가 발생했습니다. 다시 말씀해주세요.",
+					RESULT: "0"
+				});
+			} else {
+				res.json({
+					speech: "시원한 사이다 한캔 받으세요.",
+					displayText: "시원한 사이다 한캔 받으세요.",
+					RESULT: "1"
+				});
+			}
 		});
 	}
 });
