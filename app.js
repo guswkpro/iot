@@ -43,6 +43,7 @@ app.get('/', function (req, res) {
 				if (error) {
 					res.json({
 						RESULT: 0
+						ERROR: error
 					});
 				} else if (drink_type == "1") {
 					res.json({
