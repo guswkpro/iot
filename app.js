@@ -42,7 +42,7 @@ app.get('/', function (req, res) {
 			client.query('UPDATE okgoogle.okgoogle_datas set data_number = ? where data_idx = 1', [Number(0)], function (error) {
 				if (error) {
 					res.json({
-						RESULT: 0
+						RESULT: 0,
 						ERROR: error
 					});
 				} else if (drink_type == "1") {
